@@ -1,3 +1,7 @@
+//import bootstrap
+import 'bootstrap';
+import './scss/app.scss';
+
 // import your function
 import myName from './myName';
 
@@ -6,6 +10,7 @@ function component() {
 
   // use your function!
   element.innerHTML = myName('Cody');
+  element.classList.add('display-1')
   return element;
 }
 
