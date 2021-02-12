@@ -2,9 +2,66 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Getting Started</title>
+    <title>CalPlanner V1</title>
   </head>
   <body>
+    <div id="content" class="container">
+      <ul class="nav nav-pills my-2">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Tasks</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">My Day</a>
+        </li>
+      </ul>
+      <div class="row">
+        <div class="col-sm-6">
+          <p class="h2 my-3">All my tasks</p>
+
+          <div class="card">
+            <div class="card-body">
+              <p class="card-text">Description of the task</p>
+              <ul class="list-inline">
+                <li class="list-inline-item">Due in 3 days.</li>
+                <li class="list-inline-item">About 45 minutes remaining.</li>
+              </ul>
+              <div class="btn btn-outline-secondary btn-sm">Add to my day</div>
+              <div class="btn btn-outline-danger btn-sm float-end">Delete</div>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-sm-6">
+          <p class="h2 my-3">Create a new task</p>
+
+          <form action="" class="row g-3">
+            <div class="col-12">
+              <label for="descriptionInput" class="form-label">Description</label>
+              <input type="text" class="form-control" id="descriptionInput">
+            </div>
+            <div class="col-sm-6">
+              <label for="deadlineInput" class="form-label">Deadline</label>
+              <div class="input-group" id="deadlineInput">
+                <input type="text" aria-label="DD" class="form-control" placeholder="">
+                <input type="text" aria-label="MM" class="form-control" placeholder="08">
+                <input type="text" aria-label="YY" class="form-control" placeholder="2021">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <label for="timeInput" class="form-label">Time</label>
+              <div class="input-group" id="timeInput">
+                <input type="text" class="form-control" aria-label="Time" aria-describedby="time-addon">
+                <span class="input-group-text" id="time-addon">minutes</span>              
+              </div>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
     <script src="main.js"></script>
   </body>
 </html>
