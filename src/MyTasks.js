@@ -1,5 +1,5 @@
 class MyTasks {
-    constructor(){
+    constructor(html){
         this.tasks = [];
         this.html = `
         <div id="MyTasks">
@@ -17,7 +17,8 @@ class MyTasks {
     show (){
         document.getElementById("col1").innerHTML += this.html;
         this.tasks.forEach((task) => {
-            document.getElementById("MyTasks").innerHTML += task;
+            document.getElementById("MyTasks").innerHTML += task.html;
+            console.log(task);
         })
     }
     hide () {
