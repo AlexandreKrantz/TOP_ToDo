@@ -1,21 +1,40 @@
 //import date-fns
-import { format, compareAsc } from "date-fns";
+import { format, isAfter, formatDistanceToNow } from "date-fns";
 
 class Task {
   constructor(description, deadline, time, html) {
-
+    this.description = description;
+    this.deadline = deadline;
+    this.time = time;
     this.html = `
         <div class="card mb-3">
         <div class="card-body">
-          <p class="card-text">${description}</p>
+          <p class="card-text">${this.description}</p>
           <ul class="list-inline">
-            <li class="list-inline-item">Due in ${deadline} days.</li>
-            <li class="list-inline-item">About ${time} minutes.</li>
+            ${this.formatDeadline(this.deadline)}
+            ${this.formatTime(this.time)}
           </ul>
-          <div class="btn btn-secondary btn-sm">Add to my day</div>
+          <div class="btn btn-outline-primary btn-sm">Add to my day</div>
           <div class="btn btn-outline-danger btn-sm float-end">Delete</div>
         </div>
         </div>`;
+  }
+  formatDeadline(deadline) {
+    console.log(deadline);
+    if (deadline == null) {
+      return "";
+    } else {
+      deadline = formatDistanceToNow(deadline);
+      return `<li class="list-inline-item">Due in ${deadline}.</li>`
+    }
+  }
+
+  formatTime (time) {
+    if (time == null) {
+      return "";
+    } else {
+      return `<li class="list-inline-item">About ${time} minutes.</li>`;
+    }
   }
 }
 
@@ -40,7 +59,7 @@ class Form {
               required
             ></textarea>
           </div>
-          <div class="col-sm-6">
+          <div class="col-6">
             <label for="deadlineInput" class="form-label">Deadline</label>
             <div class="input-group" id="deadlineInput">
               <input
@@ -82,18 +101,29 @@ class Form {
               />
             </div>
           </div>
-          <div class="col-sm-6">
+          <div class="col-6">
             <label for="timeInput" class="form-label">Time</label>
             <div class="input-group" id="timeInput">
               <input
+                id="hours"
+                placeholder="Hours"
                 type="number"
                 class="form-control"
-                aria-label="Time"
+                aria-label="Hours"
                 aria-describedby="time-addon"
                 step="1"
                 min="1"
               />
-              <span class="input-group-text" id="time-addon">minutes</span>
+              <input
+                id="minutes"
+                placeholder="Minutes"
+                type="number"
+                class="form-control"
+                aria-label="Minutes"
+                aria-describedby="time-addon"
+                step="1"
+                min="1"
+              />
             </div>
           </div>
           <div class="col-12">
@@ -118,7 +148,7 @@ class Form {
   }
 
   alertSuccess(message) {
-    // bootstrap alert
+    // bootstrap success alert
   }
 
   alertError(message) {
@@ -146,7 +176,7 @@ class Form {
         time = timeInput;
       }
 
-      if (compareAsc(this.date, deadline) == 1){
+      if (isAfter(this.date, deadline) == true){
         this.alertError("Deadline cannot be before current date");
       } else {
         this.alertSuccess("Task created successfully");

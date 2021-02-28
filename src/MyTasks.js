@@ -11,8 +11,13 @@ class MyTasks {
         this.refresh();
     }
     removeTask (task){
-        //remove from tasks array
+        //remove task from tasks array
+        const index = this.tasks.indexOf(task);
+        if (index > -1) { 
+            array.splice(index, 1);
+        }
         //refresh
+        this.refresh();
     }
     show (){
         document.getElementById("col1").innerHTML += this.html;
