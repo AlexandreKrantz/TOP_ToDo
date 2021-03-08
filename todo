@@ -1,2 +1,3 @@
 Create event listener on delete button that sends task to removeTask()
 Convert time to duration (get and combine hours and minutes input)
+Increase gap between two columns (gutter or margin-x)
